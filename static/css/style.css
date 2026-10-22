@@ -1,0 +1,465 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.5;
+}
+
+a {
+    color: inherit;
+}
+
+/* ===== Layout base ===== */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.main-content {
+    flex: 1 0 auto;
+    width: 100%;
+    padding: 40px 0;
+}
+
+.container h2 {
+    margin-bottom: 25px;
+    color: #2e7d32;
+}
+
+/* ===== Cabeçalho ===== */
+.header {
+    background-color: #2e7d32;
+    color: white;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    font-size: 28px;
+}
+
+.logo h1 {
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+.logo span {
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Rodapé ===== */
+.footer {
+    flex-shrink: 0;
+    margin-top: 50px;
+    padding: 20px 0;
+    text-align: center;
+    background-color: #263238;
+    color: white;
+}
+
+.footer span {
+    display: block;
+    font-size: 13px;
+    opacity: 0.75;
+    margin-top: 5px;
+}
+
+/* ===== Hero (página inicial) ===== */
+.hero {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    padding: 50px 40px;
+    margin-bottom: 30px;
+}
+
+.hero-content {
+    max-width: 640px;
+}
+
+.page-tag {
+    display: inline-block;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}
+
+.hero-content h2 {
+    color: #1b1b1b;
+    font-size: 32px;
+    line-height: 1.25;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* ===== Botões ===== */
+.button {
+    display: inline-block;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.15s ease;
+}
+
+.button-primary {
+    background-color: #2e7d32;
+    color: white;
+}
+
+.button-primary:hover {
+    background-color: #1b5e20;
+}
+
+.button-secondary {
+    background-color: white;
+    color: #2e7d32;
+    border: 1px solid #2e7d32;
+}
+
+.button-secondary:hover {
+    background-color: #e8f5e9;
+}
+
+/* ===== Dashboard (cards da home) ===== */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.dashboard-card {
+    background-color: white;
+    padding: 22px 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.dashboard-icon {
+    font-size: 30px;
+}
+
+.dashboard-card span {
+    display: block;
+    color: #666;
+    font-size: 14px;
+}
+
+.dashboard-card strong {
+    font-size: 24px;
+    color: #2e7d32;
+}
+
+/* ===== Cabeçalho de página interna (ex: vacinação) ===== */
+.page-header {
+    margin-bottom: 25px;
+}
+
+.page-header h2 {
+    margin: 8px 0;
+}
+
+.page-header p {
+    color: #666;
+}
+
+/* ===== Card genérico ===== */
+.card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #666;
+}
+
+/* ===== Formulários ===== */
+form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+}
+
+/* Formulários dentro de .card (ex: vacinação) não precisam de moldura dupla */
+.card form {
+    box-shadow: none;
+    padding: 0;
+    max-width: none;
+}
+
+.form-section {
+    margin-bottom: 25px;
+}
+
+.form-section h3 {
+    color: #2e7d32;
+    font-size: 16px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group small {
+    margin-top: 5px;
+    color: #888;
+    font-size: 12px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group label {
+    margin-top: 0;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #2e7d32;
+}
+
+form button[type="submit"] {
+    display: inline-block;
+    padding: 10px 18px;
+    margin-top: 20px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+form button[type="submit"]:hover {
+    background-color: #1b5e20;
+}
+
+.card form button[type="submit"] {
+    margin-top: 0;
+}
+
+/* ===== Tabela ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th {
+    background-color: #2e7d32;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background-color: #f1f8f1;
+}
+
+/* ===== Mensagens ===== */
+.alert {
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* ===== Selos de status (vacinação) ===== */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.badge-danger {
+    background-color: #fdecea;
+    color: #c62828;
+}
+
+.badge-warning {
+    background-color: #fff8e1;
+    color: #f9a825;
+}
+
+.badge-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* ===== Ações em tabela (ex: remover) ===== */
+.inline-form {
+    display: inline;
+}
+
+.link-danger {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #c62828;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: inherit;
+}
+
+.link-danger:hover {
+    color: #8e0000;
+}
+/* Tabelas largas rolam dentro de sua região; a página acompanha a tela. */
+.main-content { width: 90%; min-width: 0; }
+.nav { flex-wrap: wrap; align-items: center; gap: 14px; }
+.header-content { gap: 24px; }
+.nav-form { padding: 0; margin: 0; background: transparent; box-shadow: none; }
+.nav-form button[type="submit"] { margin: 0; padding: 0; background: transparent; font-weight: bold; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin-bottom: 24px; }
+.table-scroll table { margin: 12px 0; }
+td { max-width: 300px; overflow-wrap: anywhere; }
+.section-title { margin-top: 30px; }
+.error { background: #fdecea; color: #a51d1d; }
+.success { background: #e8f5e9; color: #215c25; }
+.delete-button { background: #fff; color: #a51d1d; border: 1px solid #a51d1d; padding: 6px 10px; margin-left: 10px; border-radius: 4px; cursor: pointer; }
+:focus-visible { outline: 3px solid #e5a600; outline-offset: 3px; }
+button:disabled { opacity: .6; cursor: wait; }
+@media (max-width: 800px) {
+ .header-content { flex-direction: column; align-items: flex-start; }
+ .nav { gap: 14px; }
+ .hero { padding: 25px 20px; }
+ .form-grid { grid-template-columns: 1fr; }
+ form { max-width: 100%; padding: 20px; }
+ .main-content { padding-top: 24px; }
+}
+@media (max-width: 480px) {
+ .container, .main-content { width: 94%; }
+ .dashboard { grid-template-columns: 1fr; }
+ .form-actions { flex-direction: column; }
+ .form-actions > * { width: 100%; }
+ .nav a, .nav-form button[type="submit"] { font-size: 14px; }
+ th, td { padding: 10px; min-width: 110px; }
+}

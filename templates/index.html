@@ -1,0 +1,36 @@
+{% extends 'base.html' %}{% block content %}<section class="hero">
+<span class="page-tag">Gestão rural</span>
+<h2>Controle sanitário da sua propriedade</h2>
+<p>Cadastre animais e lotes, registre os cuidados e acompanhe as próximas doses.</p>
+<div class="hero-actions">
+<a class="button button-primary" href="{{ url_for('web.vacinacao') }}">Registrar vacinação</a>
+<a class="button button-secondary" href="{{ url_for('web.manejo') }}">Registrar manejo</a>
+</div>
+</section>
+<div class="dashboard">{% for entity,total in totals.items() %}<div class="dashboard-card">
+<div>
+<span>{{ entities[entity][0] }}</span>
+<strong>{{ total }}</strong>
+</div>
+</div>{% endfor %}</div>
+<h2 class="section-title">Doses para hoje e atrasadas</h2>
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th>Animal</th>
+<th>Vacina</th>
+<th>Próxima dose</th>
+<th>Situação</th>
+</tr>
+</thead>
+<tbody>{% for row in alerts %}<tr>
+<td>{{ row.identificacao }}</td>
+<td>{{ row.vacina }}</td>
+<td>{{ row.proxima_dose }}</td>
+<td>{{ status_vacina(row.proxima_dose) }}</td>
+</tr>{% else %}<tr>
+<td colspan="4">Nenhuma dose pendente com data até hoje.</td>
+</tr>{% endfor %}</tbody>
+</table>
+</div>{% endblock %}

@@ -1,0 +1,59 @@
+' Autor: Guilherme da Silva
+@startuml
+title Fluxo do Sistema - Controle de Vacinação
+
+|Usuário|
+start
+
+:Acessar Controle de Vacinação;
+
+|Sistema|
+:Exibir formulário de vacinação;
+
+|Usuário|
+:Preencher dados;
+:Enviar formulário;
+
+|Sistema|
+:Validar dados;
+
+if (Dados obrigatórios válidos?) then (Não)
+    :Informar campos obrigatórios;
+    :Retornar formulário;
+    stop
+else (Sim)
+endif
+
+if (Data da próxima dose\né válida?) then (Não)
+    :Informar erro de data;
+    :Retornar formulário;
+    stop
+else (Sim)
+endif
+
+|Banco de Dados|
+:Inserir registro\nna tabela vacinacoes;
+
+if (Registro salvo?) then (Não)
+    |Sistema|
+    :Informar erro ao salvar;
+    stop
+else (Sim)
+endif
+
+|Sistema|
+:Confirmar vacinação registrada;
+:Consultar vacinações cadastradas;
+
+|Banco de Dados|
+:Retornar registros;
+
+|Sistema|
+:Exibir listagem de vacinações;
+
+|Usuário|
+:Visualizar histórico;
+
+stop
+
+@enduml

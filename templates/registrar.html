@@ -1,0 +1,21 @@
+{% extends 'base.html' %}{% block content %}<h2>{{ "Criar minha conta" if public else "Criar usuário" }}</h2>
+<form method="post">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<label for="username">Usuário</label>
+<input id="username" name="username" maxlength="80" autocomplete="username" value="{{ username }}" required>
+<label for="password">Senha</label>
+<input id="password" name="password" type="password" minlength="12" maxlength="128" autocomplete="new-password" aria-describedby="policy" required>
+<p id="policy">Use de 12 a 128 caracteres, com maiúscula, minúscula, número e símbolo.</p>
+{% if public %}
+<label for="confirm_password">Confirmar senha</label>
+<input id="confirm_password" name="confirm_password" type="password" minlength="12" maxlength="128" autocomplete="new-password" required>
+{% else %}
+<label for="perfil">Perfil</label>
+<select id="perfil" name="perfil">
+<option value="app_user">Operador: cadastra e edita</option>
+<option value="admin">Administrador: também exclui e administra usuários</option>
+</select>
+{% endif %}
+<button type="submit">{{ "Criar minha conta" if public else "Criar usuário" }}</button>
+{% if public %}<p>Já tem conta? <a href="{{ url_for('web.login') }}">Entrar</a></p>{% endif %}
+</form>{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}{% block content %}<h2>Auditoria</h2>
+<p>Últimos 500 eventos. As operações de negócio também geram registros por gatilho no banco.</p>
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th>Data (UTC)</th>
+<th>Usuário</th>
+<th>Ação</th>
+<th>Detalhes</th>
+</tr>
+</thead>
+<tbody>{% for row in rows %}<tr>
+<td>{{ row.data_hora }}</td>
+<td>{{ row.usuario }}</td>
+<td>{{ row.acao }}</td>
+<td>{{ row.detalhes }}</td>
+</tr>{% else %}<tr>
+<td colspan="4">Nenhum evento.</td>
+</tr>{% endfor %}</tbody>
+</table>
+</div>{% endblock %}

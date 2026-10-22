@@ -1,0 +1,38 @@
+{% extends 'base.html' %}{% block content %}<h2>Registros e histórico sanitário</h2>
+<p>Animais e lotes com histórico vinculado só podem ser excluídos após a remoção ou alteração dos vínculos.</p>
+<form method="get" class="history-filter">
+<div class="form-grid">
+<div>
+<label for="filter-lot">Histórico do lote</label>
+<select id="filter-lot" name="lote_id">
+<option value="">Todos os lotes</option>{% for id,label in lots.items() %}<option value="{{ id }}" {% if selected_lot == id %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+</div>
+<div>
+<label for="filter-animal">Histórico do animal</label>
+<select id="filter-animal" name="animal_id">
+<option value="">Todos os animais</option>{% for id,label in labels.items() %}<option value="{{ id }}" {% if selected_animal == id %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+</div>
+</div>
+<button type="submit">Filtrar histórico</button> <a href="{{ url_for('web.listagem') }}">Limpar filtros</a>
+</form>
+{% for entity,rows in groups.items() %}<section>
+<h3 class="section-title">{{ entities[entity][0] }}</h3>
+<div class="table-scroll" role="region" aria-label="{{ entities[entity][0] }}" tabindex="0">
+<table>
+<thead>
+<tr>
+<th>ID</th>{% for name,label,kind,required in entities[entity][1] %}<th>{{ label }}</th>{% endfor %}{% if entity == 'vacinacao' %}<th>Situação</th>{% endif %}{% if entity in ['vacinacao','manejo_sanitario'] %}<th>Carência</th>{% endif %}<th>Ações</th>
+</tr>
+</thead>
+<tbody>
+{% for row in rows %}<tr>
+<td>{{ row.id }}</td>{% for name,label,kind,required in entities[entity][1] %}<td>{% if kind == 'animal' %}{{ labels.get(row[name], '-') }}{% elif kind == 'lote' %}{{ lots.get(row[name], '-') }}{% else %}{{ row[name] if row[name] is not none else '-' }}{% endif %}</td>{% endfor %}
+{% if entity == 'vacinacao' %}<td>{{ row.situacao }}</td>{% endif %}{% if entity in ['vacinacao','manejo_sanitario'] %}<td>{{ row.carencia }}</td>{% endif %}
+<td>
+<a href="{{ url_for('web.edit', entity=entity, rid=row.id) }}">Editar</a>{% if current_user.perfil == 'admin' %}<button class="delete-button" type="button" data-delete="{{ url_for('web.item', entity=entity, rid=row.id) }}">Excluir</button>{% endif %}</td>
+</tr>{% else %}<tr>
+<td colspan="{{ entities[entity][1]|length + 4 }}">Nenhum registro.</td>
+</tr>{% endfor %}</tbody>
+</table>
+</div>
+</section>{% endfor %}{% endblock %}

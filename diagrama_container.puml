@@ -1,0 +1,19 @@
+' Autor: Kezia Las
+
+@startuml Container Diagrama
+title Diagrama de Contêiner
+
+package "Sistema Web" {
+
+  [Interface Web\nHTML/CSS]
+  [Servidor\nPython/Flask]
+  database "Banco de Dados"
+
+}
+
+[Interface Web\nHTML/CSS] --> [Servidor\nPython/Flask] : Requisições HTTP
+[Servidor\nPython/Flask] --> "Banco de Dados" : CRUD
+"Banco de Dados" --> [Servidor\nPython/Flask]
+[Servidor\nPython/Flask] --> [Interface Web\nHTML/CSS] : Respostas
+
+@enduml

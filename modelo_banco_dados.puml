@@ -1,0 +1,67 @@
+@startuml
+title Modelo físico e relações - AgroSan
+hide methods
+hide stereotypes
+skinparam linetype ortho
+entity "usuarios" {
+  id : INTEGER PRIMARY KEY AUTOINCREMENT
+  username : TEXT NOT NULL UNIQUE
+  senha : TEXT NOT NULL
+  perfil : TEXT NOT NULL CHECK (perfil IN ('admin', 'app_user'))
+}
+entity "lotes" {
+  id : INTEGER PRIMARY KEY AUTOINCREMENT
+  codigo_lote : TEXT NOT NULL UNIQUE
+  quantidade_animais : INTEGER NOT NULL CHECK (quantidade_animais >= 0)
+  especie : TEXT NOT NULL
+  data_formacao : TEXT NOT NULL
+}
+entity "animais" {
+  id : INTEGER PRIMARY KEY AUTOINCREMENT
+  identificacao : TEXT NOT NULL UNIQUE
+  especie : TEXT NOT NULL
+  raca : TEXT
+  sexo : TEXT
+  data_nascimento : TEXT
+  lote_id : INTEGER REFERENCES lotes(id) ON DELETE RESTRICT
+}
+entity "vacinacao" {
+  id : INTEGER PRIMARY KEY AUTOINCREMENT
+  animal_id : INTEGER NOT NULL REFERENCES animais(id) ON DELETE RESTRICT
+  vacina : TEXT NOT NULL
+  fabricante : TEXT
+  lote_vacina : TEXT
+  dose : TEXT NOT NULL
+  data_aplicacao : TEXT NOT NULL
+  proxima_dose : TEXT
+  responsavel : TEXT NOT NULL
+  observacoes : TEXT
+  carencia_dias : INTEGER NOT NULL DEFAULT 0 CHECK (carencia_dias >= 0)
+}
+entity "manejo_sanitario" {
+  id : INTEGER PRIMARY KEY AUTOINCREMENT
+  animal_id : INTEGER NOT NULL REFERENCES animais(id) ON DELETE RESTRICT
+  tipo_manejo : TEXT NOT NULL
+  data_manejo : TEXT NOT NULL
+  produto : TEXT
+  dose : TEXT
+  responsavel : TEXT NOT NULL
+  observacoes : TEXT
+  carencia_dias : INTEGER NOT NULL DEFAULT 0 CHECK (carencia_dias >= 0)
+}
+entity "audit_log" {
+  id : INTEGER PRIMARY KEY AUTOINCREMENT
+  acao : TEXT NOT NULL
+  detalhes : TEXT NOT NULL
+  usuario : TEXT NOT NULL DEFAULT 'banco'
+  data_hora : TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+}
+entity "login_attempts" {
+  username : TEXT PRIMARY KEY
+  tentativas : INTEGER NOT NULL DEFAULT 0
+  bloqueado_ate : DOUBLE PRECISION NOT NULL DEFAULT 0
+}
+lotes ||--o{ animais : contém
+animais ||--o{ vacinacao : recebe
+animais ||--o{ manejo_sanitario : recebe
+@enduml

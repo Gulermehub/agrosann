@@ -1,0 +1,14 @@
+AGROSAN - COMO ACESSAR
+
+1. Extraia o ZIP para uma pasta do computador.
+2. Tenha Python 3.12 ou superior instalado e adicionado ao PATH.
+3. De dois cliques em iniciar.bat. A primeira execucao instala as dependencias e precisa de internet.
+4. Mantenha a janela aberta e acesse http://127.0.0.1:5001 no navegador.
+5. Clique em Criar minha conta, escolha usuario e senha e confirme a senha.
+6. Volte a tela de entrada e entre com a conta criada.
+
+A primeira conta de uma instalacao vazia sera administradora. As demais contas serao operadoras e acessarao os dados compartilhados desta instalacao.
+Nas proximas vezes, basta executar iniciar.bat novamente.
+O endereco acima funciona na propria maquina. A publicacao para acesso remoto sera feita depois.
+
+Esta copia nao inclui o banco, as senhas ou os registros locais de quem enviou o projeto.

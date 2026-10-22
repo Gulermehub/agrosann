@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<title>{% block title %}AgroSan{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script src="{{ url_for('static', filename='app.js') }}" defer>
+</script>
+</head>
+<body>
+<header class="header">
+<div class="container header-content">
+<div class="logo">
+<div>
+<h1>AgroSan</h1>
+<span>Controle sanitário</span>
+</div>
+</div>
+<nav class="nav" aria-label="Navegação principal">
+{% if current_user.is_authenticated %}
+<a href="{{ url_for('web.inicio') }}">Início</a>
+<a href="{{ url_for('web.cadastro') }}">Animais</a>
+<a href="{{ url_for('web.lotes') }}">Lotes</a>
+<a href="{{ url_for('web.vacinacao') }}">Vacinação</a>
+<a href="{{ url_for('web.manejo') }}">Manejos</a>
+<a href="{{ url_for('web.listagem') }}">Registros</a>
+{% if current_user.perfil == 'admin' %}<a href="{{ url_for('web.create_user') }}">Usuários</a>
+<a href="{{ url_for('web.logs') }}">Auditoria</a>{% endif %}
+<form class="nav-form" action="{{ url_for('web.logout') }}" method="post">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<button type="submit">Sair ({{ current_user.username }})</button>
+</form>
+{% else %}<a href="{{ url_for('web.login') }}">Entrar</a> <a href="{{ url_for('web.register') }}">Criar conta</a>{% endif %}</nav>
+</div>
+</header>
+<main class="container main-content">
+<div id="feedback" role="status" aria-live="polite">
+</div>
+{% for category, message in get_flashed_messages(with_categories=true) %}<p class="alert {{ category }}" role="status">{{ message }}</p>{% endfor %}
+{% block content %}{% endblock %}</main>
+<footer class="footer">
+<p>AgroSan - Controle de Manejo Sanitário e Vacinação</p>
+<span>Projeto acadêmico</span>
+</footer>
+</body>
+</html>
