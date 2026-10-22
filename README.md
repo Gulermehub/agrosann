@@ -104,7 +104,6 @@ O README anterior apontava issues como se fossem um Project. O quadro GitHub Pro
 
 | Integrante | Responsabilidade original |
 |---|---|
-| Kezia Laís | Cadastro de lotes |
 | Ayram Viviane | Alerta de vacinas e período de carência |
 | Guilherme da Silva | Controle de vacinação |
 | Sthefany Campos | Consulta do histórico sanitário dos lotes |
